@@ -9,6 +9,8 @@ import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import model.CustomerMembershipView;
+import movieproject.DBManager;
 
 public class CustomerDao {
 
@@ -27,7 +29,7 @@ public class CustomerDao {
             stmt.setString(4, customer.getPhone());
 
             if (customer.getMembershipId() == null) {
-                stmt.setNull(5, Types.INTEGER);
+                stmt.setNull(5, 4);
             } else {
                 stmt.setInt(5, customer.getMembershipId());
             }
@@ -47,12 +49,13 @@ public class CustomerDao {
         }
     }
 
-    public List<Customer> getAllCustomers() {
-        List<Customer> customers = new ArrayList<>();
+    public List<CustomerMembershipView> getAllCustomers() {
+        List<CustomerMembershipView> customers = new ArrayList<>();
 
         String sql = """
-            SELECT customer_id, first_name, last_name, email, phone, membership_id, created_date
-            FROM customer
+            SELECT customer_id, first_name, last_name, email, phone,
+                   created_date, membership_type, discount_percent
+            FROM customer_membership_view
             ORDER BY last_name, first_name
         """;
 
@@ -63,14 +66,15 @@ public class CustomerDao {
             while (rs.next()) {
                 Date sqlDate = rs.getDate("created_date");
 
-                Customer customer = new Customer(
+                CustomerMembershipView customer = new CustomerMembershipView(
                     rs.getInt("customer_id"),
                     rs.getString("first_name"),
                     rs.getString("last_name"),
                     rs.getString("email"),
                     rs.getString("phone"),
-                    (Integer) rs.getObject("membership_id"),
-                    sqlDate == null ? null : sqlDate.toLocalDate()
+                    sqlDate == null ? null : sqlDate.toLocalDate(),
+                    rs.getString("membership_type"),
+                    rs.getBigDecimal("discount_percent")
                 );
 
                 customers.add(customer);
@@ -103,7 +107,7 @@ public class CustomerDao {
             } else {
                 stmt.setInt(5, customer.getMembershipId());
             }
-
+            
             stmt.setInt(6, customer.getCustomerId());
 
             return stmt.executeUpdate() > 0;

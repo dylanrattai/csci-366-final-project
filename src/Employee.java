@@ -9,7 +9,7 @@ public class Employee {
     private String firstName;
     private String lastName;
     private String phone;
-    private int roleId;
+    private Integer roleId;
 
     public Employee() {
     }
@@ -65,11 +65,11 @@ public class Employee {
         this.phone = phone;
     }
     
-    public int getRoleId() {
+    public Integer getRoleId() {
         return roleId;
     }
 
-    public void setRoleId(int roleId) {
+    public void setRoleId(Integer roleId) {
         this.roleId = roleId;
     }
 

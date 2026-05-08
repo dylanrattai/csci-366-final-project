@@ -8,6 +8,7 @@ import model.Role;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import movieproject.DBManager;
 
 /**
  *
@@ -30,6 +31,8 @@ public class RoleDao {
                 rs.getString("role_type"));
                 roles.add(role);
             }
+        } catch (SQLException e) {
+            System.out.println("Error getting roles: " + e.getMessage());
         }
         return roles;
     }

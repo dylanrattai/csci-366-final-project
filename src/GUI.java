@@ -1,5 +1,7 @@
 package movieproject;
 
+import dao.CustomerDao;
+import dao.EmployeeDao;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -9,6 +11,10 @@ import javax.swing.text.Style;
 import javax.swing.text.StyleConstants;
 import javax.swing.text.StyledDocument;
 import java.time.LocalDate;
+import model.Customer;
+import model.CustomerMembershipView;
+import model.Employee;
+import model.EmployeeRoleView;
 
 /**
  *
@@ -503,10 +509,10 @@ public class GUI extends javax.swing.JFrame {
                 case "List of Customers":
                        
                     CustomerDao custDAO = new CustomerDao();
-                    List<Customer> custList = custDAO.getAllCustomers();
+                    List<CustomerMembershipView> custList = custDAO.getAllCustomers();
                     size = custList.size();
                     for(int i = 0; i < size; i++){
-                        Customer read = custList.get(i);
+                        CustomerMembershipView read = custList.get(i);
                     
                         doc.insertString(doc.getLength(), "Customer ID: ", bold);
                         doc.insertString(doc.getLength(), String.valueOf(read.getCustomerId()), null);
@@ -519,7 +525,7 @@ public class GUI extends javax.swing.JFrame {
                         doc.insertString(doc.getLength(), " Phone: ", bold);
                         doc.insertString(doc.getLength(), read.getPhone(), null);
                         doc.insertString(doc.getLength(), " Membership: ", bold);
-                        doc.insertString(doc.getLength(), String.valueOf(read.getMembershipId()), null);
+                        doc.insertString(doc.getLength(), String.valueOf(read.getMembershipType()), null);
                         doc.insertString(doc.getLength(), " Date: ", bold);
                         doc.insertString(doc.getLength(), String.valueOf(read.getCreatedDate()), null);
                         doc.insertString(doc.getLength(), "\n", bold);
@@ -532,10 +538,10 @@ public class GUI extends javax.swing.JFrame {
                 case "List of Employees":
                     
                     EmployeeDao empDAO = new EmployeeDao();
-                    List<Employee> empList = empDAO.getAllEmployees();
+                    List<EmployeeRoleView> empList = empDAO.getAllEmployees();
                     size = empList.size();
                     for(int i = 0; i < size; i++){
-                        Employee read = empList.get(i);
+                        EmployeeRoleView read = empList.get(i);
                         
                         doc.insertString(doc.getLength(), "Customer ID: ", bold);
                         doc.insertString(doc.getLength(), String.valueOf(read.getEmployeeId()), null);
@@ -545,8 +551,8 @@ public class GUI extends javax.swing.JFrame {
                         doc.insertString(doc.getLength(), read.getLastName(), null);
                         doc.insertString(doc.getLength(), " Phone: ", bold);
                         doc.insertString(doc.getLength(), read.getPhone(), null);
-                        doc.insertString(doc.getLength(), " Role ID: ", bold);
-                        doc.insertString(doc.getLength(), String.valueOf(read.getRoleId()), null);
+                        doc.insertString(doc.getLength(), " Role: ", bold);
+                        doc.insertString(doc.getLength(), String.valueOf(read.getRoleType()), null);
                         doc.insertString(doc.getLength(), "\n", bold);
                         
                     }
