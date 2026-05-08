@@ -8,6 +8,7 @@ import javax.swing.text.BadLocationException;
 import javax.swing.text.Style;
 import javax.swing.text.StyleConstants;
 import javax.swing.text.StyledDocument;
+import java.time.LocalDate;
 
 /**
  *
@@ -22,6 +23,13 @@ public class GUI extends javax.swing.JFrame {
         initComponents();
     }
 
+    
+    private String customerAddState = "";
+    
+    
+    
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -36,11 +44,47 @@ public class GUI extends javax.swing.JFrame {
         title = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         output = new javax.swing.JTextPane();
+        custFN = new javax.swing.JTextField();
+        custLN = new javax.swing.JTextField();
+        custE = new javax.swing.JTextField();
+        custPN = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        custM = new javax.swing.JTextField();
+        custD = new javax.swing.JTextField();
+        addCustomerButton = new javax.swing.JButton();
+        custID = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        deleteCustomer = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        uCustFN = new javax.swing.JTextField();
+        uCustID = new javax.swing.JTextField();
+        uCustLN = new javax.swing.JTextField();
+        uCustE = new javax.swing.JTextField();
+        uCustM = new javax.swing.JTextField();
+        uCustPN = new javax.swing.JTextField();
+        updateCustomerButton = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
+        empFN = new javax.swing.JTextField();
+        empLN = new javax.swing.JTextField();
+        empPN = new javax.swing.JTextField();
+        empR = new javax.swing.JTextField();
+        addEmployeeButton = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
+        empID = new javax.swing.JTextField();
+        deleteEmployeeButton = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
+        uEmpR = new javax.swing.JTextField();
+        uEmpID = new javax.swing.JTextField();
+        updateEmployeeButton = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
+        movieP = new javax.swing.JTextField();
+        movieT = new javax.swing.JTextField();
+        addMovieButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         querySelect.setEditable(true);
-        querySelect.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Rentals", "Movies In Stock", "Most Rented Movies" }));
+        querySelect.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "List of Customers", "List of Employees", "List of Memberships", "List of Roles", "List of Rentals", "Movies In Stock", "Most Rented Movies", " " }));
         querySelect.setToolTipText("");
         querySelect.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -62,38 +106,317 @@ public class GUI extends javax.swing.JFrame {
 
         jScrollPane2.setViewportView(output);
 
+        custFN.setText("First Name*");
+
+        custLN.setText("Last Name*");
+
+        custE.setText("Email*");
+
+        custPN.setText("Phone Number*");
+
+        jLabel1.setText("Add Customer");
+
+        custM.setText("Membership");
+
+        custD.setText("Date");
+
+        addCustomerButton.setText("Add");
+        addCustomerButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addCustomerButtonActionPerformed(evt);
+            }
+        });
+
+        custID.setText("Customer ID");
+
+        jLabel2.setText("Delete Customer");
+
+        deleteCustomer.setText("Delete");
+        deleteCustomer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteCustomerAction(evt);
+            }
+        });
+
+        jLabel3.setText("Update Customer");
+
+        uCustFN.setText("First Name");
+
+        uCustID.setText("Customer ID");
+
+        uCustLN.setText("Last Name");
+
+        uCustE.setText("Email");
+
+        uCustM.setText("Membership");
+
+        uCustPN.setText("Phone Number");
+
+        updateCustomerButton.setText("Update");
+        updateCustomerButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updateCustomerAction(evt);
+            }
+        });
+
+        jLabel4.setText("Add Employee");
+
+        empFN.setText("First Name");
+
+        empLN.setText("Last Name");
+
+        empPN.setText("Phone Number");
+
+        empR.setText("Role ID");
+
+        addEmployeeButton.setText("Add");
+        addEmployeeButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addEmployeeAction(evt);
+            }
+        });
+
+        jLabel5.setText("Delete Employee");
+
+        empID.setText("Employee ID");
+
+        deleteEmployeeButton.setText("Delete");
+        deleteEmployeeButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteEmployeeAction(evt);
+            }
+        });
+
+        jLabel6.setText("Update Employee Role");
+
+        uEmpR.setText("Role ID");
+
+        uEmpID.setText("Employee ID");
+
+        updateEmployeeButton.setText("Update");
+        updateEmployeeButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updateEmployeeAction(evt);
+            }
+        });
+
+        jLabel7.setText("Add Movie");
+
+        movieP.setText("Movie Price");
+
+        movieT.setText("Movie Title");
+
+        addMovieButton.setText("Add");
+        addMovieButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addMovieAction(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(querySelect, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(69, 69, 69)
-                        .addComponent(executeQuery))
+                        .addGap(248, 248, 248)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(querySelect, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(69, 69, 69)
+                                        .addComponent(executeQuery)))
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(84, 84, 84)
+                                .addComponent(title)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap(19, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(movieP, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(movieT, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 716, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(custE, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(custPN, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(custD, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(custM, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(empFN)
+                            .addComponent(empLN, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(empPN)
+                            .addComponent(empR, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(custLN, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(custFN, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(addCustomerButton)
+                                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING))
+                                        .addGap(16, 16, 16)))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(36, 36, 36)
+                                        .addComponent(jLabel2)
+                                        .addGap(41, 41, 41)
+                                        .addComponent(jLabel3))
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addGroup(layout.createSequentialGroup()
+                                                    .addGap(43, 43, 43)
+                                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                                            .addGap(0, 0, Short.MAX_VALUE)
+                                                            .addComponent(uCustLN, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                                            .addComponent(deleteCustomer)
+                                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
+                                                            .addComponent(uCustFN, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                                        .addComponent(empID, javax.swing.GroupLayout.Alignment.LEADING)
+                                                        .addComponent(custID, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE))
+                                                    .addGap(18, 18, 18)
+                                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                        .addComponent(uCustID, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addComponent(uEmpR, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addComponent(uEmpID, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(uCustE, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                .addComponent(uCustM, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(uCustPN, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(46, 46, 46)
+                                        .addComponent(deleteEmployeeButton)))
+                                .addGap(26, 26, 26))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addComponent(updateEmployeeButton)
+                                        .addGap(53, 53, 53))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addComponent(updateCustomerButton)
+                                        .addGap(49, 49, 49))))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(addEmployeeButton)
+                        .addContainerGap())
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(84, 84, 84)
-                        .addComponent(title)))
-                .addGap(255, 255, 255))
+                        .addComponent(jLabel5)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel6)
+                        .addGap(29, 29, 29))))
             .addGroup(layout.createSequentialGroup()
-                .addGap(72, 72, 72)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 603, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(87, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(46, 46, 46)
+                        .addComponent(jLabel7))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(37, 37, 37)
+                        .addComponent(addMovieButton)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(49, 49, 49)
-                .addComponent(title)
-                .addGap(24, 24, 24)
-                .addComponent(querySelect, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(executeQuery)
-                .addGap(27, 27, 27)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(33, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(39, 39, 39)
+                        .addComponent(title)
+                        .addGap(24, 24, 24)
+                        .addComponent(querySelect, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(executeQuery)
+                        .addGap(38, 38, 38)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(27, 27, 27)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel3))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(custID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(uCustID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(custFN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(uCustFN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(deleteCustomer))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(uCustLN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(uCustE, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(uCustPN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(uCustM, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(updateCustomerButton))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(custLN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(custE, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(custPN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(custM, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(custD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(addCustomerButton)))
+                        .addGap(30, 30, 30)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel6))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(empFN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(empID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(uEmpID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(empLN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(deleteEmployeeButton)
+                            .addComponent(uEmpR, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(empPN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(updateEmployeeButton))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(empR, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(addEmployeeButton)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel7)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(movieT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(movieP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(addMovieButton)
+                .addContainerGap(159, Short.MAX_VALUE))
         );
 
         pack();
@@ -118,7 +441,7 @@ public class GUI extends javax.swing.JFrame {
             String selected = (String) querySelect.getSelectedItem();
             
             switch(selected){            
-                case "Rentals":
+                case "List of Rentals":
                     
                     RentalDAO renDAO = new RentalDAO();
                     
@@ -157,7 +480,7 @@ public class GUI extends javax.swing.JFrame {
                         doc.insertString(doc.getLength(), String.valueOf(read.getIn_stock()), null);
                         doc.insertString(doc.getLength(), "\n", bold);
                         
-                }
+                    }
 
                     break;
                 case "Most Rented Movies":
@@ -174,8 +497,62 @@ public class GUI extends javax.swing.JFrame {
                         doc.insertString(doc.getLength(), String.valueOf(read.getTimes_rented()), null);
                         doc.insertString(doc.getLength(), "\n", bold);
                         
-                }
-
+                    }
+                    
+                    break;
+                case "List of Customers":
+                       
+                    CustomerDao custDAO = new CustomerDao();
+                    List<Customer> custList = custDAO.getAllCustomers();
+                    size = custList.size();
+                    for(int i = 0; i < size; i++){
+                        Customer read = custList.get(i);
+                    
+                        doc.insertString(doc.getLength(), "Customer ID: ", bold);
+                        doc.insertString(doc.getLength(), String.valueOf(read.getCustomerId()), null);
+                        doc.insertString(doc.getLength(), " First Name: ", bold);
+                        doc.insertString(doc.getLength(), read.getFirstName(), null);
+                        doc.insertString(doc.getLength(), " Last Name: ", bold);
+                        doc.insertString(doc.getLength(), read.getLastName(), null);
+                        doc.insertString(doc.getLength(), " Email: ", bold);
+                        doc.insertString(doc.getLength(), read.getEmail(), null);
+                        doc.insertString(doc.getLength(), " Phone: ", bold);
+                        doc.insertString(doc.getLength(), read.getPhone(), null);
+                        doc.insertString(doc.getLength(), " Membership: ", bold);
+                        doc.insertString(doc.getLength(), String.valueOf(read.getMembershipId()), null);
+                        doc.insertString(doc.getLength(), " Date: ", bold);
+                        doc.insertString(doc.getLength(), String.valueOf(read.getCreatedDate()), null);
+                        doc.insertString(doc.getLength(), "\n", bold);
+                        
+                    }
+                    
+                    
+                    break;
+                    
+                case "List of Employees":
+                    
+                    EmployeeDao empDAO = new EmployeeDao();
+                    List<Employee> empList = empDAO.getAllEmployees();
+                    size = empList.size();
+                    for(int i = 0; i < size; i++){
+                        Employee read = empList.get(i);
+                        
+                        doc.insertString(doc.getLength(), "Customer ID: ", bold);
+                        doc.insertString(doc.getLength(), String.valueOf(read.getEmployeeId()), null);
+                        doc.insertString(doc.getLength(), " First Name: ", bold);
+                        doc.insertString(doc.getLength(), read.getFirstName(), null);
+                        doc.insertString(doc.getLength(), " Last Name: ", bold);
+                        doc.insertString(doc.getLength(), read.getLastName(), null);
+                        doc.insertString(doc.getLength(), " Phone: ", bold);
+                        doc.insertString(doc.getLength(), read.getPhone(), null);
+                        doc.insertString(doc.getLength(), " Role ID: ", bold);
+                        doc.insertString(doc.getLength(), String.valueOf(read.getRoleId()), null);
+                        doc.insertString(doc.getLength(), "\n", bold);
+                        
+                    }
+                    
+                    
+                    break;
             }
         }
         catch(SQLException sql){
@@ -186,6 +563,107 @@ public class GUI extends javax.swing.JFrame {
         }
               
     }//GEN-LAST:event_executeQueryAction
+
+    private void addCustomerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addCustomerButtonActionPerformed
+        
+        output.setText("");
+        
+        try{
+            Customer toAdd = new Customer(custFN.getText(), custLN.getText(), custE.getText(), custPN.getText(), Integer.parseInt(custM.getText()), LocalDate.parse(custD.getText()));
+        
+            CustomerDao add = new CustomerDao();
+        
+            add.addCustomer(toAdd);
+        }
+        catch(Exception e){
+            output.setText("Invalid Input. Please check all fields");
+        }
+        
+    }//GEN-LAST:event_addCustomerButtonActionPerformed
+
+    private void deleteCustomerAction(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteCustomerAction
+        
+        try{
+            int toDelete = Integer.parseInt(custID.getText());
+            CustomerDao delete = new CustomerDao();
+            delete.deleteCustomer(toDelete);
+        }
+        catch(NumberFormatException e){
+            output.setText("Invalid Customer ID");
+        }
+        
+        
+    }//GEN-LAST:event_deleteCustomerAction
+
+    private void updateCustomerAction(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateCustomerAction
+        
+        output.setText("");
+        
+        try{
+            Customer toUpdate = new Customer(Integer.parseInt(uCustID.getText()), uCustFN.getText(), uCustLN.getText(), uCustE.getText(), uCustPN.getText(), Integer.parseInt(uCustM.getText()), null);
+        
+            CustomerDao update = new CustomerDao();
+        
+            update.updateCustomer(toUpdate);
+        }
+        catch(Exception e){
+            output.setText("Invalid Input. Please check all fields");
+        }
+        
+    }//GEN-LAST:event_updateCustomerAction
+
+    private void addEmployeeAction(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addEmployeeAction
+        
+        output.setText("");
+        
+        try{
+            Employee toAdd = new Employee(empFN.getText(), empLN.getText(), empPN.getText(), Integer.parseInt(empR.getText()));
+        
+            EmployeeDao add = new EmployeeDao();
+        
+            add.addEmployee(toAdd);
+        }
+        catch(Exception e){
+            output.setText("Invalid Input. Please check all fields");
+        }
+
+    }//GEN-LAST:event_addEmployeeAction
+
+    private void deleteEmployeeAction(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteEmployeeAction
+
+        try{
+            int toDelete = Integer.parseInt(empID.getText());
+            EmployeeDao delete = new EmployeeDao();
+            delete.deleteEmployee(toDelete);
+        }
+        catch(NumberFormatException e){
+            output.setText("Invalid Customer ID");
+        }
+        
+    }//GEN-LAST:event_deleteEmployeeAction
+
+    private void updateEmployeeAction(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateEmployeeAction
+        
+        output.setText("");
+        
+        try{
+            
+            EmployeeDao update = new EmployeeDao();
+        
+            update.updateEmployeeRole(Integer.parseInt(uEmpID.getText()), Integer.parseInt(uEmpR.getText()));
+            
+        }
+        catch(Exception e){
+            output.setText("Invalid Input. Please check all fields");
+        }
+
+    }//GEN-LAST:event_updateEmployeeAction
+
+    private void addMovieAction(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addMovieAction
+        
+
+        
+    }//GEN-LAST:event_addMovieAction
 
     /**
      * @param args the command line arguments
@@ -223,10 +701,46 @@ public class GUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton addCustomerButton;
+    private javax.swing.JButton addEmployeeButton;
+    private javax.swing.JButton addMovieButton;
+    private javax.swing.JTextField custD;
+    private javax.swing.JTextField custE;
+    private javax.swing.JTextField custFN;
+    private javax.swing.JTextField custID;
+    private javax.swing.JTextField custLN;
+    private javax.swing.JTextField custM;
+    private javax.swing.JTextField custPN;
+    private javax.swing.JButton deleteCustomer;
+    private javax.swing.JButton deleteEmployeeButton;
+    private javax.swing.JTextField empFN;
+    private javax.swing.JTextField empID;
+    private javax.swing.JTextField empLN;
+    private javax.swing.JTextField empPN;
+    private javax.swing.JTextField empR;
     private javax.swing.JButton executeQuery;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTextField movieP;
+    private javax.swing.JTextField movieT;
     private javax.swing.JTextPane output;
     private javax.swing.JComboBox<String> querySelect;
     private javax.swing.JLabel title;
+    private javax.swing.JTextField uCustE;
+    private javax.swing.JTextField uCustFN;
+    private javax.swing.JTextField uCustID;
+    private javax.swing.JTextField uCustLN;
+    private javax.swing.JTextField uCustM;
+    private javax.swing.JTextField uCustPN;
+    private javax.swing.JTextField uEmpID;
+    private javax.swing.JTextField uEmpR;
+    private javax.swing.JButton updateCustomerButton;
+    private javax.swing.JButton updateEmployeeButton;
     // End of variables declaration//GEN-END:variables
 }
