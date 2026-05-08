@@ -1,7 +1,5 @@
-package movieproject;
 
-import dao.CustomerDao;
-import dao.EmployeeDao;
+
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,10 +9,6 @@ import javax.swing.text.Style;
 import javax.swing.text.StyleConstants;
 import javax.swing.text.StyledDocument;
 import java.time.LocalDate;
-import model.Customer;
-import model.CustomerMembershipView;
-import model.Employee;
-import model.EmployeeRoleView;
 
 /**
  *
@@ -63,10 +57,10 @@ public class GUI extends javax.swing.JFrame {
         deleteCustomer = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         uCustFN = new javax.swing.JTextField();
-        uCustID = new javax.swing.JTextField();
+        uCustIDMem = new javax.swing.JTextField();
         uCustLN = new javax.swing.JTextField();
         uCustE = new javax.swing.JTextField();
-        uCustM = new javax.swing.JTextField();
+        uCustMID = new javax.swing.JTextField();
         uCustPN = new javax.swing.JTextField();
         updateCustomerButton = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
@@ -86,17 +80,29 @@ public class GUI extends javax.swing.JFrame {
         movieP = new javax.swing.JTextField();
         movieT = new javax.swing.JTextField();
         addMovieButton = new javax.swing.JButton();
+        jLabel8 = new javax.swing.JLabel();
+        movieID = new javax.swing.JTextField();
+        deleteMovieButton = new javax.swing.JButton();
+        lRoleID = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
+        listEmployeeButton = new javax.swing.JButton();
+        jLabel10 = new javax.swing.JLabel();
+        uCustID = new javax.swing.JTextField();
+        uCustM = new javax.swing.JTextField();
+        updateCustomerMembershipButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         querySelect.setEditable(true);
-        querySelect.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "List of Customers", "List of Employees", "List of Memberships", "List of Roles", "List of Rentals", "Movies In Stock", "Most Rented Movies", " " }));
+        querySelect.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "List of Customers", "List of Employees", "List of Memberships", "List of Roles", "List of Rentals", "Movies In Stock", "Most Rented Movies" }));
         querySelect.setToolTipText("");
         querySelect.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 querySelectActionPerformed(evt);
             }
         });
+        getContentPane().add(querySelect, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 110, 234, -1));
 
         executeQuery.setText("Query");
         executeQuery.addActionListener(new java.awt.event.ActionListener() {
@@ -104,27 +110,38 @@ public class GUI extends javax.swing.JFrame {
                 executeQueryAction(evt);
             }
         });
+        getContentPane().add(executeQuery, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 150, -1, -1));
 
         title.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         title.setText("Database");
         title.setToolTipText("");
         title.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        getContentPane().add(title, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 70, -1, -1));
 
         jScrollPane2.setViewportView(output);
 
-        custFN.setText("First Name*");
+        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 20, 1030, 251));
 
-        custLN.setText("Last Name*");
+        custFN.setText("First Name");
+        getContentPane().add(custFN, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 310, 111, -1));
 
-        custE.setText("Email*");
+        custLN.setText("Last Name");
+        getContentPane().add(custLN, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 340, 111, -1));
 
-        custPN.setText("Phone Number*");
+        custE.setText("Email");
+        getContentPane().add(custE, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 370, 111, -1));
+
+        custPN.setText("Phone Number");
+        getContentPane().add(custPN, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 400, 111, -1));
 
         jLabel1.setText("Add Customer");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 290, -1, -1));
 
-        custM.setText("Membership");
+        custM.setText("Membership ID");
+        getContentPane().add(custM, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 430, 111, -1));
 
         custD.setText("Date");
+        getContentPane().add(custD, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 460, 111, -1));
 
         addCustomerButton.setText("Add");
         addCustomerButton.addActionListener(new java.awt.event.ActionListener() {
@@ -132,10 +149,13 @@ public class GUI extends javax.swing.JFrame {
                 addCustomerButtonActionPerformed(evt);
             }
         });
+        getContentPane().add(addCustomerButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 490, -1, -1));
 
         custID.setText("Customer ID");
+        getContentPane().add(custID, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 310, 110, -1));
 
         jLabel2.setText("Delete Customer");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 290, -1, -1));
 
         deleteCustomer.setText("Delete");
         deleteCustomer.addActionListener(new java.awt.event.ActionListener() {
@@ -143,20 +163,28 @@ public class GUI extends javax.swing.JFrame {
                 deleteCustomerAction(evt);
             }
         });
+        getContentPane().add(deleteCustomer, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 340, -1, -1));
 
         jLabel3.setText("Update Customer");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 290, -1, -1));
 
         uCustFN.setText("First Name");
+        getContentPane().add(uCustFN, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 340, 115, -1));
 
-        uCustID.setText("Customer ID");
+        uCustIDMem.setText("Customer ID");
+        getContentPane().add(uCustIDMem, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 310, 115, -1));
 
         uCustLN.setText("Last Name");
+        getContentPane().add(uCustLN, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 370, 115, -1));
 
         uCustE.setText("Email");
+        getContentPane().add(uCustE, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 400, 115, -1));
 
-        uCustM.setText("Membership");
+        uCustMID.setText("Membership ID");
+        getContentPane().add(uCustMID, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 340, 115, -1));
 
         uCustPN.setText("Phone Number");
+        getContentPane().add(uCustPN, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 430, 115, -1));
 
         updateCustomerButton.setText("Update");
         updateCustomerButton.addActionListener(new java.awt.event.ActionListener() {
@@ -164,16 +192,22 @@ public class GUI extends javax.swing.JFrame {
                 updateCustomerAction(evt);
             }
         });
+        getContentPane().add(updateCustomerButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 490, -1, -1));
 
         jLabel4.setText("Add Employee");
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 530, -1, -1));
 
         empFN.setText("First Name");
+        getContentPane().add(empFN, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 550, 110, -1));
 
         empLN.setText("Last Name");
+        getContentPane().add(empLN, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 580, 110, -1));
 
         empPN.setText("Phone Number");
+        getContentPane().add(empPN, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 610, 110, -1));
 
         empR.setText("Role ID");
+        getContentPane().add(empR, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 640, 110, -1));
 
         addEmployeeButton.setText("Add");
         addEmployeeButton.addActionListener(new java.awt.event.ActionListener() {
@@ -181,10 +215,13 @@ public class GUI extends javax.swing.JFrame {
                 addEmployeeAction(evt);
             }
         });
+        getContentPane().add(addEmployeeButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 670, -1, -1));
 
         jLabel5.setText("Delete Employee");
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 530, -1, -1));
 
         empID.setText("Employee ID");
+        getContentPane().add(empID, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 550, 110, -1));
 
         deleteEmployeeButton.setText("Delete");
         deleteEmployeeButton.addActionListener(new java.awt.event.ActionListener() {
@@ -192,12 +229,16 @@ public class GUI extends javax.swing.JFrame {
                 deleteEmployeeAction(evt);
             }
         });
+        getContentPane().add(deleteEmployeeButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 580, -1, -1));
 
         jLabel6.setText("Update Employee Role");
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 530, 150, -1));
 
         uEmpR.setText("Role ID");
+        getContentPane().add(uEmpR, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 580, 112, -1));
 
         uEmpID.setText("Employee ID");
+        getContentPane().add(uEmpID, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 550, 112, -1));
 
         updateEmployeeButton.setText("Update");
         updateEmployeeButton.addActionListener(new java.awt.event.ActionListener() {
@@ -205,12 +246,16 @@ public class GUI extends javax.swing.JFrame {
                 updateEmployeeAction(evt);
             }
         });
+        getContentPane().add(updateEmployeeButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 610, -1, -1));
 
         jLabel7.setText("Add Movie");
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 290, -1, -1));
 
         movieP.setText("Movie Price");
+        getContentPane().add(movieP, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 340, 112, -1));
 
         movieT.setText("Movie Title");
+        getContentPane().add(movieT, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 310, 112, -1));
 
         addMovieButton.setText("Add");
         addMovieButton.addActionListener(new java.awt.event.ActionListener() {
@@ -218,212 +263,52 @@ public class GUI extends javax.swing.JFrame {
                 addMovieAction(evt);
             }
         });
+        getContentPane().add(addMovieButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 370, -1, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(248, 248, 248)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(querySelect, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(69, 69, 69)
-                                        .addComponent(executeQuery)))
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(84, 84, 84)
-                                .addComponent(title)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap(19, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(movieP, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(movieT, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 716, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(custE, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(custPN, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(custD, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(custM, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(empFN)
-                            .addComponent(empLN, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(empPN)
-                            .addComponent(empR, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(custLN, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(custFN, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(addCustomerButton)
-                                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING))
-                                        .addGap(16, 16, 16)))))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(36, 36, 36)
-                                        .addComponent(jLabel2)
-                                        .addGap(41, 41, 41)
-                                        .addComponent(jLabel3))
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addGroup(layout.createSequentialGroup()
-                                                    .addGap(43, 43, 43)
-                                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                                            .addGap(0, 0, Short.MAX_VALUE)
-                                                            .addComponent(uCustLN, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                                            .addComponent(deleteCustomer)
-                                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
-                                                            .addComponent(uCustFN, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                                        .addComponent(empID, javax.swing.GroupLayout.Alignment.LEADING)
-                                                        .addComponent(custID, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE))
-                                                    .addGap(18, 18, 18)
-                                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                        .addComponent(uCustID, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                        .addComponent(uEmpR, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                        .addComponent(uEmpID, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(uCustE, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                                .addComponent(uCustM, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(uCustPN, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(46, 46, 46)
-                                        .addComponent(deleteEmployeeButton)))
-                                .addGap(26, 26, 26))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addComponent(updateEmployeeButton)
-                                        .addGap(53, 53, 53))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addComponent(updateCustomerButton)
-                                        .addGap(49, 49, 49))))))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(addEmployeeButton)
-                        .addContainerGap())
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel5)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel6)
-                        .addGap(29, 29, 29))))
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(46, 46, 46)
-                        .addComponent(jLabel7))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(37, 37, 37)
-                        .addComponent(addMovieButton)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(39, 39, 39)
-                        .addComponent(title)
-                        .addGap(24, 24, 24)
-                        .addComponent(querySelect, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(executeQuery)
-                        .addGap(38, 38, 38)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(27, 27, 27)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(custID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(uCustID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(custFN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(uCustFN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(deleteCustomer))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(uCustLN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(uCustE, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(uCustPN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(uCustM, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(updateCustomerButton))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(custLN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(custE, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(custPN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(custM, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(custD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(addCustomerButton)))
-                        .addGap(30, 30, 30)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel6))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(empFN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(empID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(uEmpID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(empLN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(deleteEmployeeButton)
-                            .addComponent(uEmpR, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(empPN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(updateEmployeeButton))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(empR, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(addEmployeeButton)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel7)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(movieT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(movieP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(addMovieButton)
-                .addContainerGap(159, Short.MAX_VALUE))
-        );
+        jLabel8.setText("Delete Movie");
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 290, -1, -1));
+
+        movieID.setText("Movie ID");
+        getContentPane().add(movieID, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 310, 112, -1));
+
+        deleteMovieButton.setText("Delete");
+        deleteMovieButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteMovieAction(evt);
+            }
+        });
+        getContentPane().add(deleteMovieButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 340, -1, -1));
+
+        lRoleID.setText("Role ID");
+        getContentPane().add(lRoleID, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 550, 100, -1));
+
+        jLabel9.setText("List Employees By Role");
+        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 530, 130, -1));
+
+        listEmployeeButton.setText("List");
+        listEmployeeButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                listEmployeeByRoleAction(evt);
+            }
+        });
+        getContentPane().add(listEmployeeButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 580, -1, -1));
+
+        jLabel10.setText("Update Customer Membership");
+        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 290, -1, -1));
+
+        uCustID.setText("Customer ID");
+        getContentPane().add(uCustID, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 310, 115, -1));
+
+        uCustM.setText("Membership ID");
+        getContentPane().add(uCustM, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 460, 115, -1));
+
+        updateCustomerMembershipButton.setText("Update");
+        updateCustomerMembershipButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updateCustomerMembershipAction(evt);
+            }
+        });
+        getContentPane().add(updateCustomerMembershipButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 370, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -463,8 +348,16 @@ public class GUI extends javax.swing.JFrame {
                         doc.insertString(doc.getLength(), String.valueOf(read.getRentalDate()), null);
                         doc.insertString(doc.getLength(), " Customer_Id: ", bold);
                         doc.insertString(doc.getLength(), String.valueOf(read.getCustomerID()), null);
+                        doc.insertString(doc.getLength(), " Customer First Name: ", bold);
+                        doc.insertString(doc.getLength(), String.valueOf(read.getCustFirstName()), null);
+                        doc.insertString(doc.getLength(), " Customer Last Name: ", bold);
+                        doc.insertString(doc.getLength(), String.valueOf(read.getCustLastName()), null);
                         doc.insertString(doc.getLength(), " Sold_By: ", bold);
                         doc.insertString(doc.getLength(), String.valueOf(read.getSoldBy()), null);
+                        doc.insertString(doc.getLength(), " Employee First Name: ", bold);
+                        doc.insertString(doc.getLength(), String.valueOf(read.getEmpFirstName()), null);
+                        doc.insertString(doc.getLength(), " Total Price: ", bold);
+                        doc.insertString(doc.getLength(), String.valueOf(read.getTotalPrice()), null);
                         doc.insertString(doc.getLength(), "\n", bold);
 
                     }
@@ -526,6 +419,8 @@ public class GUI extends javax.swing.JFrame {
                         doc.insertString(doc.getLength(), read.getPhone(), null);
                         doc.insertString(doc.getLength(), " Membership: ", bold);
                         doc.insertString(doc.getLength(), String.valueOf(read.getMembershipType()), null);
+                        doc.insertString(doc.getLength(), " Discount: ", bold);
+                        doc.insertString(doc.getLength(), String.valueOf(read.getDiscountPercent()), null);
                         doc.insertString(doc.getLength(), " Date: ", bold);
                         doc.insertString(doc.getLength(), String.valueOf(read.getCreatedDate()), null);
                         doc.insertString(doc.getLength(), "\n", bold);
@@ -543,7 +438,7 @@ public class GUI extends javax.swing.JFrame {
                     for(int i = 0; i < size; i++){
                         EmployeeRoleView read = empList.get(i);
                         
-                        doc.insertString(doc.getLength(), "Customer ID: ", bold);
+                        doc.insertString(doc.getLength(), "Employee ID: ", bold);
                         doc.insertString(doc.getLength(), String.valueOf(read.getEmployeeId()), null);
                         doc.insertString(doc.getLength(), " First Name: ", bold);
                         doc.insertString(doc.getLength(), read.getFirstName(), null);
@@ -551,14 +446,52 @@ public class GUI extends javax.swing.JFrame {
                         doc.insertString(doc.getLength(), read.getLastName(), null);
                         doc.insertString(doc.getLength(), " Phone: ", bold);
                         doc.insertString(doc.getLength(), read.getPhone(), null);
-                        doc.insertString(doc.getLength(), " Role: ", bold);
+                        doc.insertString(doc.getLength(), " Role Type: ", bold);
                         doc.insertString(doc.getLength(), String.valueOf(read.getRoleType()), null);
                         doc.insertString(doc.getLength(), "\n", bold);
                         
                     }
-                    
-                    
+                                       
                     break;
+                    
+                case "List of Roles":
+                    
+                    RoleDao roleDAO = new RoleDao();
+                    List<Role> roleList = roleDAO.getAllRoles();
+                    size = roleList.size();
+                    for(int i = 0; i < size; i++){
+                        Role read = roleList.get(i);
+                        
+                        doc.insertString(doc.getLength(), "Role ID: ", bold);
+                        doc.insertString(doc.getLength(), String.valueOf(read.getRoleId()), null);
+                        doc.insertString(doc.getLength(), " Role Type: ", bold);
+                        doc.insertString(doc.getLength(), read.getRoleType(), null);
+                        doc.insertString(doc.getLength(), "\n", bold);
+
+                        
+                    }
+                    break;
+                    
+                case "List of Memberships":
+                    
+                    MembershipDao memDAO = new MembershipDao();
+                    List<Membership> memList = memDAO.getAllMemberships();
+                    size = memList.size();
+                    for(int i = 0; i < size; i++){
+                        Membership read = memList.get(i);
+                        
+                        doc.insertString(doc.getLength(), "Membership ID: ", bold);
+                        doc.insertString(doc.getLength(), String.valueOf(read.getMembershipId()), null);
+                        doc.insertString(doc.getLength(), " Membership Type: ", bold);
+                        doc.insertString(doc.getLength(), read.getMembershipType(), null);
+                        doc.insertString(doc.getLength(), " Discount: ", bold);
+                        doc.insertString(doc.getLength(), String.valueOf(read.getDiscountPercent()), null);
+                        doc.insertString(doc.getLength(), "\n", bold);
+
+                        
+                    }
+                    break;
+                    
             }
         }
         catch(SQLException sql){
@@ -606,7 +539,7 @@ public class GUI extends javax.swing.JFrame {
         output.setText("");
         
         try{
-            Customer toUpdate = new Customer(Integer.parseInt(uCustID.getText()), uCustFN.getText(), uCustLN.getText(), uCustE.getText(), uCustPN.getText(), Integer.parseInt(uCustM.getText()), null);
+            Customer toUpdate = new Customer(Integer.parseInt(uCustIDMem.getText()), uCustFN.getText(), uCustLN.getText(), uCustE.getText(), uCustPN.getText(), Integer.parseInt(uCustMID.getText()), null);
         
             CustomerDao update = new CustomerDao();
         
@@ -667,9 +600,78 @@ public class GUI extends javax.swing.JFrame {
 
     private void addMovieAction(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addMovieAction
         
-
+        
         
     }//GEN-LAST:event_addMovieAction
+
+    private void deleteMovieAction(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteMovieAction
+        
+        /*
+        try{
+            int toDelete = Integer.parseInt(movieID.getText());
+            MovieDao delete = new MovieDao();
+            delete.deleteMovie(toDelete);
+        }
+        catch(NumberFormatException e){
+            output.setText("Invalid Movie ID");
+        }
+        */
+        
+    }//GEN-LAST:event_deleteMovieAction
+
+    private void listEmployeeByRoleAction(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listEmployeeByRoleAction
+        
+        output.setText("");
+        
+        try{
+            StyledDocument doc = output.getStyledDocument();        
+            Style bold = doc.addStyle("bold", null);       
+            StyleConstants.setBold(bold, true);
+
+            EmployeeDao empDAO = new EmployeeDao();
+            List<EmployeeRoleView> empList = empDAO.getEmployeesByRole(Integer.parseInt(lRoleID.getText()));
+            int size = empList.size();
+            for(int i = 0; i < size; i++){
+                EmployeeRoleView read = empList.get(i);
+
+                doc.insertString(doc.getLength(), "Employee ID: ", bold);
+                doc.insertString(doc.getLength(), String.valueOf(read.getEmployeeId()), null);
+                doc.insertString(doc.getLength(), " First Name: ", bold);
+                doc.insertString(doc.getLength(), read.getFirstName(), null);
+                doc.insertString(doc.getLength(), " Last Name: ", bold);
+                doc.insertString(doc.getLength(), read.getLastName(), null);
+                doc.insertString(doc.getLength(), " Phone: ", bold);
+                doc.insertString(doc.getLength(), read.getPhone(), null);
+                doc.insertString(doc.getLength(), " Role Type: ", bold);
+                doc.insertString(doc.getLength(), String.valueOf(read.getRoleType()), null);
+                doc.insertString(doc.getLength(), "\n", bold);
+
+            }
+        }
+        catch(BadLocationException ble){
+            output.setText("Invalid Input");
+        }
+        
+        
+    }//GEN-LAST:event_listEmployeeByRoleAction
+
+    private void updateCustomerMembershipAction(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateCustomerMembershipAction
+        
+        output.setText("");
+        
+        try{
+        
+            CustomerDao update = new CustomerDao();
+        
+            update.assignMembership(Integer.parseInt(uCustIDMem.getText()), Integer.parseInt(uCustMID.getText()));
+        }
+        catch(Exception e){
+            output.setText("Invalid Input. Please check all fields");
+        }
+        
+        
+        
+    }//GEN-LAST:event_updateCustomerMembershipAction
 
     /**
      * @param args the command line arguments
@@ -697,6 +699,7 @@ public class GUI extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -719,6 +722,7 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JTextField custPN;
     private javax.swing.JButton deleteCustomer;
     private javax.swing.JButton deleteEmployeeButton;
+    private javax.swing.JButton deleteMovieButton;
     private javax.swing.JTextField empFN;
     private javax.swing.JTextField empID;
     private javax.swing.JTextField empLN;
@@ -726,13 +730,19 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JTextField empR;
     private javax.swing.JButton executeQuery;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTextField lRoleID;
+    private javax.swing.JButton listEmployeeButton;
+    private javax.swing.JTextField movieID;
     private javax.swing.JTextField movieP;
     private javax.swing.JTextField movieT;
     private javax.swing.JTextPane output;
@@ -741,12 +751,15 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JTextField uCustE;
     private javax.swing.JTextField uCustFN;
     private javax.swing.JTextField uCustID;
+    private javax.swing.JTextField uCustIDMem;
     private javax.swing.JTextField uCustLN;
     private javax.swing.JTextField uCustM;
+    private javax.swing.JTextField uCustMID;
     private javax.swing.JTextField uCustPN;
     private javax.swing.JTextField uEmpID;
     private javax.swing.JTextField uEmpR;
     private javax.swing.JButton updateCustomerButton;
+    private javax.swing.JButton updateCustomerMembershipButton;
     private javax.swing.JButton updateEmployeeButton;
     // End of variables declaration//GEN-END:variables
 }

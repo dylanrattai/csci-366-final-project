@@ -1,5 +1,5 @@
 
-package movieproject;
+
 
 import java.time.LocalDate;
 import java.math.BigDecimal;
@@ -21,13 +21,21 @@ public class Rental {
     private LocalDate rentalDate;
     private int customerID;
     private int soldBy;
+    private String custFirstName;
+    private String custLastName;
+    private String empFirstName;
+    private double totalPrice;
 
     
-    public Rental(int rentalID, LocalDate rentalDate, int customerID, int soldBy){
+    public Rental(int rentalID, LocalDate rentalDate, int customerID, int soldBy, String custFirstName, String custLastName, String empFirstName, double totalPrice){
         this.rentalID = rentalID;
         this.rentalDate = rentalDate;
         this.customerID = customerID;
         this.soldBy = soldBy;
+        this.custFirstName = custFirstName;
+        this.custLastName = custLastName;
+        this.empFirstName = empFirstName;
+        this.totalPrice = totalPrice;
     }
     
     /**
@@ -57,6 +65,35 @@ public class Rental {
     public int getSoldBy() {
         return soldBy;
     }
+
+    /**
+     * @return the custFirstName
+     */
+    public String getCustFirstName() {
+        return custFirstName;
+    }
+
+    /**
+     * @return the custLastName
+     */
+    public String getCustLastName() {
+        return custLastName;
+    }
+
+    /**
+     * @return the empFirstName
+     */
+    public String getEmpFirstName() {
+        return empFirstName;
+    }
+
+    /**
+     * @return the totalPrice
+     */
+    public double getTotalPrice() {
+        return totalPrice;
+    }
+    
     
     
   

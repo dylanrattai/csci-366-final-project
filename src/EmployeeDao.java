@@ -2,14 +2,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package dao;
 
-import model.Employee;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-import model.EmployeeRoleView;
-import movieproject.DBManager;
 
 public class EmployeeDao {
 
@@ -44,7 +40,7 @@ public class EmployeeDao {
         List<EmployeeRoleView> employees = new ArrayList<>();
 
         String sql = """
-            SELECT first_name, last_name, phone, role_type
+            SELECT employee_id, first_name, last_name, phone, role_type
             FROM employee_role_view
             ORDER BY last_name, first_name
         """;
@@ -81,10 +77,14 @@ public class EmployeeDao {
             WHERE role_id = ?
             ORDER BY last_name, first_name
         """;
-
+        
         try (Connection conn = DBManager.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql);
-                ResultSet rs = stmt.executeQuery()) {
+             PreparedStatement stmt = conn.prepareStatement(sql)){
+                 
+             
+                stmt.setInt(1, roleId);         //added
+                
+                try(ResultSet rs = stmt.executeQuery()) {
             
                 while (rs.next()) {
                     EmployeeRoleView employee = new EmployeeRoleView(
@@ -98,7 +98,7 @@ public class EmployeeDao {
                     employees.add(employee);
                 }
             
-
+             }
         } catch (SQLException e) {
             System.out.println("Error getting employees by role: " + e.getMessage());
         }
