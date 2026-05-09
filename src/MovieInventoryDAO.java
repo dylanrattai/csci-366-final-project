@@ -15,17 +15,15 @@ public class MovieInventoryDAO {
      * A single movie can have many inventory records (one per physical copy).
      *
      * @param movieId     The movie this inventory copy belongs to (FK to movie table).
-     * @param isAvailable Whether this copy is currently available for rent.
      * @return true if the inventory record was added successfully, false otherwise.
      */
-    public boolean addMovieToInventory(int movieId, boolean isAvailable) {
-    String sqlStatement = "INSERT INTO movie_inventory (movie_id, is_available) VALUES (?, ?)";
+    public boolean addMovieToInventory(int movieId) {
+    String sqlStatement = "INSERT INTO movie_inventory (movie_id) VALUES (?)";
 
     try (Connection conn = DBManager.getConnection();
          PreparedStatement stmt = conn.prepareStatement(sqlStatement)) {
 
         stmt.setInt(1, movieId);
-        stmt.setBoolean(2, isAvailable);
 
         int rowsInserted = stmt.executeUpdate();
         if (rowsInserted > 0) {

@@ -32,6 +32,7 @@ public class Movie {
     public String getTitle() {
         return movieTitle;
     }
+    
 
     public void setRentPrice(BigDecimal rentPrice) {
         this.moviePrice = rentPrice;
@@ -42,7 +43,7 @@ public class Movie {
             System.out.println("Movie title cannot be empty.");
             return false;
         }
-        if (moviePrice == null || moviePrice.compareTo(BigDecimal.ZERO) < 0) {
+        if (getMoviePrice() == null || getMoviePrice().compareTo(BigDecimal.ZERO) < 0) {
             System.out.println("Movie price must be a positive value.");
             return false;
         }
@@ -51,6 +52,13 @@ public class Movie {
 
     @Override
     public String toString() {
-        return "Movie ID: " + movieId + ", Title: " + movieTitle + ", Price: $" + moviePrice;
+        return "Movie ID: " + movieId + ", Title: " + movieTitle + ", Price: $" + getMoviePrice();
+    }
+
+    /**
+     * @return the moviePrice
+     */
+    public BigDecimal getMoviePrice() {
+        return moviePrice;
     }
 }

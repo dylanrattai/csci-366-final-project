@@ -9,6 +9,7 @@ import javax.swing.text.Style;
 import javax.swing.text.StyleConstants;
 import javax.swing.text.StyledDocument;
 import java.time.LocalDate;
+import java.math.BigDecimal;
 
 /**
  *
@@ -90,19 +91,29 @@ public class GUI extends javax.swing.JFrame {
         uCustID = new javax.swing.JTextField();
         uCustM = new javax.swing.JTextField();
         updateCustomerMembershipButton = new javax.swing.JButton();
+        updateMovieButton = new javax.swing.JButton();
+        uMovieID = new javax.swing.JTextField();
+        uMovieT = new javax.swing.JTextField();
+        jLabel11 = new javax.swing.JLabel();
+        uMovieP = new javax.swing.JTextField();
+        jLabel12 = new javax.swing.JLabel();
+        invMovieID = new javax.swing.JTextField();
+        addMovieToInventory = new javax.swing.JButton();
+        jLabel13 = new javax.swing.JLabel();
+        invID = new javax.swing.JTextField();
+        deleteMovieFromInventory = new javax.swing.JButton();
+        jLabel14 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         querySelect.setEditable(true);
-        querySelect.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "List of Customers", "List of Employees", "List of Memberships", "List of Roles", "List of Rentals", "Movies In Stock", "Most Rented Movies" }));
+        querySelect.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "List of Customers", "List of Employees", "List of Memberships", "List of Roles", "List of Rentals", "List of Movies", "Movies In Stock", "Most Rented Movies" }));
         querySelect.setToolTipText("");
-        querySelect.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                querySelectActionPerformed(evt);
-            }
-        });
-        getContentPane().add(querySelect, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 110, 234, -1));
+        getContentPane().add(querySelect, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 630, 234, -1));
 
         executeQuery.setText("Query");
         executeQuery.addActionListener(new java.awt.event.ActionListener() {
@@ -110,38 +121,39 @@ public class GUI extends javax.swing.JFrame {
                 executeQueryAction(evt);
             }
         });
-        getContentPane().add(executeQuery, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 150, -1, -1));
+        getContentPane().add(executeQuery, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 670, -1, -1));
 
+        title.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         title.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        title.setText("Database");
+        title.setText("General Queries");
         title.setToolTipText("");
         title.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        getContentPane().add(title, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 70, -1, -1));
+        getContentPane().add(title, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 580, -1, -1));
 
         jScrollPane2.setViewportView(output);
 
-        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 20, 1030, 251));
+        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 30, 1070, 251));
 
         custFN.setText("First Name");
-        getContentPane().add(custFN, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 310, 111, -1));
+        getContentPane().add(custFN, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 360, 111, -1));
 
         custLN.setText("Last Name");
-        getContentPane().add(custLN, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 340, 111, -1));
+        getContentPane().add(custLN, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 390, 111, -1));
 
         custE.setText("Email");
-        getContentPane().add(custE, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 370, 111, -1));
+        getContentPane().add(custE, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 420, 111, -1));
 
         custPN.setText("Phone Number");
-        getContentPane().add(custPN, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 400, 111, -1));
+        getContentPane().add(custPN, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 450, 111, -1));
 
         jLabel1.setText("Add Customer");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 290, -1, -1));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 340, -1, -1));
 
         custM.setText("Membership ID");
-        getContentPane().add(custM, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 430, 111, -1));
+        getContentPane().add(custM, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 480, 111, -1));
 
         custD.setText("Date");
-        getContentPane().add(custD, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 460, 111, -1));
+        getContentPane().add(custD, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 510, 111, -1));
 
         addCustomerButton.setText("Add");
         addCustomerButton.addActionListener(new java.awt.event.ActionListener() {
@@ -149,13 +161,13 @@ public class GUI extends javax.swing.JFrame {
                 addCustomerButtonActionPerformed(evt);
             }
         });
-        getContentPane().add(addCustomerButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 490, -1, -1));
+        getContentPane().add(addCustomerButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 540, -1, -1));
 
         custID.setText("Customer ID");
-        getContentPane().add(custID, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 310, 110, -1));
+        getContentPane().add(custID, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 360, 110, -1));
 
         jLabel2.setText("Delete Customer");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 290, -1, -1));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 340, -1, -1));
 
         deleteCustomer.setText("Delete");
         deleteCustomer.addActionListener(new java.awt.event.ActionListener() {
@@ -163,28 +175,28 @@ public class GUI extends javax.swing.JFrame {
                 deleteCustomerAction(evt);
             }
         });
-        getContentPane().add(deleteCustomer, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 340, -1, -1));
+        getContentPane().add(deleteCustomer, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 390, -1, -1));
 
         jLabel3.setText("Update Customer");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 290, -1, -1));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 340, -1, -1));
 
         uCustFN.setText("First Name");
-        getContentPane().add(uCustFN, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 340, 115, -1));
+        getContentPane().add(uCustFN, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 390, 115, -1));
 
         uCustIDMem.setText("Customer ID");
-        getContentPane().add(uCustIDMem, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 310, 115, -1));
+        getContentPane().add(uCustIDMem, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 360, 115, -1));
 
         uCustLN.setText("Last Name");
-        getContentPane().add(uCustLN, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 370, 115, -1));
+        getContentPane().add(uCustLN, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 420, 115, -1));
 
         uCustE.setText("Email");
-        getContentPane().add(uCustE, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 400, 115, -1));
+        getContentPane().add(uCustE, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 450, 115, -1));
 
         uCustMID.setText("Membership ID");
-        getContentPane().add(uCustMID, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 340, 115, -1));
+        getContentPane().add(uCustMID, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 390, 115, -1));
 
         uCustPN.setText("Phone Number");
-        getContentPane().add(uCustPN, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 430, 115, -1));
+        getContentPane().add(uCustPN, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 480, 115, -1));
 
         updateCustomerButton.setText("Update");
         updateCustomerButton.addActionListener(new java.awt.event.ActionListener() {
@@ -192,22 +204,22 @@ public class GUI extends javax.swing.JFrame {
                 updateCustomerAction(evt);
             }
         });
-        getContentPane().add(updateCustomerButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 490, -1, -1));
+        getContentPane().add(updateCustomerButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 540, -1, -1));
 
         jLabel4.setText("Add Employee");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 530, -1, -1));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 340, -1, -1));
 
         empFN.setText("First Name");
-        getContentPane().add(empFN, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 550, 110, -1));
+        getContentPane().add(empFN, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 360, 110, -1));
 
         empLN.setText("Last Name");
-        getContentPane().add(empLN, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 580, 110, -1));
+        getContentPane().add(empLN, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 390, 110, -1));
 
         empPN.setText("Phone Number");
-        getContentPane().add(empPN, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 610, 110, -1));
+        getContentPane().add(empPN, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 420, 110, -1));
 
         empR.setText("Role ID");
-        getContentPane().add(empR, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 640, 110, -1));
+        getContentPane().add(empR, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 450, 110, -1));
 
         addEmployeeButton.setText("Add");
         addEmployeeButton.addActionListener(new java.awt.event.ActionListener() {
@@ -215,13 +227,13 @@ public class GUI extends javax.swing.JFrame {
                 addEmployeeAction(evt);
             }
         });
-        getContentPane().add(addEmployeeButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 670, -1, -1));
+        getContentPane().add(addEmployeeButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 480, -1, -1));
 
         jLabel5.setText("Delete Employee");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 530, -1, -1));
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 340, -1, -1));
 
         empID.setText("Employee ID");
-        getContentPane().add(empID, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 550, 110, -1));
+        getContentPane().add(empID, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 360, 110, -1));
 
         deleteEmployeeButton.setText("Delete");
         deleteEmployeeButton.addActionListener(new java.awt.event.ActionListener() {
@@ -229,16 +241,16 @@ public class GUI extends javax.swing.JFrame {
                 deleteEmployeeAction(evt);
             }
         });
-        getContentPane().add(deleteEmployeeButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 580, -1, -1));
+        getContentPane().add(deleteEmployeeButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 390, -1, -1));
 
         jLabel6.setText("Update Employee Role");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 530, 150, -1));
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 340, 150, -1));
 
         uEmpR.setText("Role ID");
-        getContentPane().add(uEmpR, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 580, 112, -1));
+        getContentPane().add(uEmpR, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 390, 112, -1));
 
         uEmpID.setText("Employee ID");
-        getContentPane().add(uEmpID, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 550, 112, -1));
+        getContentPane().add(uEmpID, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 360, 112, -1));
 
         updateEmployeeButton.setText("Update");
         updateEmployeeButton.addActionListener(new java.awt.event.ActionListener() {
@@ -246,16 +258,16 @@ public class GUI extends javax.swing.JFrame {
                 updateEmployeeAction(evt);
             }
         });
-        getContentPane().add(updateEmployeeButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 610, -1, -1));
+        getContentPane().add(updateEmployeeButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 420, -1, -1));
 
         jLabel7.setText("Add Movie");
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 290, -1, -1));
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 620, -1, -1));
 
         movieP.setText("Movie Price");
-        getContentPane().add(movieP, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 340, 112, -1));
+        getContentPane().add(movieP, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 670, 112, -1));
 
         movieT.setText("Movie Title");
-        getContentPane().add(movieT, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 310, 112, -1));
+        getContentPane().add(movieT, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 640, 112, -1));
 
         addMovieButton.setText("Add");
         addMovieButton.addActionListener(new java.awt.event.ActionListener() {
@@ -263,13 +275,13 @@ public class GUI extends javax.swing.JFrame {
                 addMovieAction(evt);
             }
         });
-        getContentPane().add(addMovieButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 370, -1, -1));
+        getContentPane().add(addMovieButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 700, -1, -1));
 
         jLabel8.setText("Delete Movie");
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 290, -1, -1));
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 620, -1, -1));
 
         movieID.setText("Movie ID");
-        getContentPane().add(movieID, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 310, 112, -1));
+        getContentPane().add(movieID, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 640, 112, -1));
 
         deleteMovieButton.setText("Delete");
         deleteMovieButton.addActionListener(new java.awt.event.ActionListener() {
@@ -277,13 +289,13 @@ public class GUI extends javax.swing.JFrame {
                 deleteMovieAction(evt);
             }
         });
-        getContentPane().add(deleteMovieButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 340, -1, -1));
+        getContentPane().add(deleteMovieButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 670, -1, -1));
 
         lRoleID.setText("Role ID");
-        getContentPane().add(lRoleID, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 550, 100, -1));
+        getContentPane().add(lRoleID, new org.netbeans.lib.awtextra.AbsoluteConstraints(980, 360, 100, -1));
 
         jLabel9.setText("List Employees By Role");
-        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 530, 130, -1));
+        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 340, 130, -1));
 
         listEmployeeButton.setText("List");
         listEmployeeButton.addActionListener(new java.awt.event.ActionListener() {
@@ -291,16 +303,16 @@ public class GUI extends javax.swing.JFrame {
                 listEmployeeByRoleAction(evt);
             }
         });
-        getContentPane().add(listEmployeeButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 580, -1, -1));
+        getContentPane().add(listEmployeeButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(990, 390, -1, -1));
 
         jLabel10.setText("Update Customer Membership");
-        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 290, -1, -1));
+        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 340, -1, -1));
 
         uCustID.setText("Customer ID");
-        getContentPane().add(uCustID, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 310, 115, -1));
+        getContentPane().add(uCustID, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 360, 115, -1));
 
         uCustM.setText("Membership ID");
-        getContentPane().add(uCustM, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 460, 115, -1));
+        getContentPane().add(uCustM, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 510, 115, -1));
 
         updateCustomerMembershipButton.setText("Update");
         updateCustomerMembershipButton.addActionListener(new java.awt.event.ActionListener() {
@@ -308,14 +320,74 @@ public class GUI extends javax.swing.JFrame {
                 updateCustomerMembershipAction(evt);
             }
         });
-        getContentPane().add(updateCustomerMembershipButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 370, -1, -1));
+        getContentPane().add(updateCustomerMembershipButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 420, -1, -1));
+
+        updateMovieButton.setText("Update");
+        updateMovieButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updateMovieAction(evt);
+            }
+        });
+        getContentPane().add(updateMovieButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 730, -1, -1));
+
+        uMovieID.setText("Movie ID");
+        getContentPane().add(uMovieID, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 640, 120, -1));
+
+        uMovieT.setText("Movie Title");
+        getContentPane().add(uMovieT, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 670, 120, -1));
+
+        jLabel11.setText("Update Movie");
+        getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 620, 80, -1));
+
+        uMovieP.setText("Movie Price");
+        getContentPane().add(uMovieP, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 700, 120, -1));
+
+        jLabel12.setText("Add Movie to Inventory");
+        getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 620, -1, -1));
+
+        invMovieID.setText("Movie ID");
+        getContentPane().add(invMovieID, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 640, 110, -1));
+
+        addMovieToInventory.setText("Add");
+        addMovieToInventory.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addMovieToInventoryAction(evt);
+            }
+        });
+        getContentPane().add(addMovieToInventory, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 670, -1, -1));
+
+        jLabel13.setText("Delete Movie From Inventory");
+        getContentPane().add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 620, -1, -1));
+
+        invID.setText("Inventory ID");
+        getContentPane().add(invID, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 640, 110, -1));
+
+        deleteMovieFromInventory.setText("Delete");
+        deleteMovieFromInventory.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteMovieFromInventoryAction(evt);
+            }
+        });
+        getContentPane().add(deleteMovieFromInventory, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 670, -1, -1));
+
+        jLabel14.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel14.setText("Employee");
+        getContentPane().add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 300, 110, -1));
+
+        jLabel15.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel15.setText("Movie Inventory");
+        getContentPane().add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 580, 180, -1));
+
+        jLabel16.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel16.setText("Customer");
+        getContentPane().add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 300, 110, -1));
+
+        jLabel17.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel17.setText("Movie");
+        getContentPane().add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 570, 70, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void querySelectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_querySelectActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_querySelectActionPerformed
 
     private void executeQueryAction(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_executeQueryAction
                                          
@@ -492,6 +564,25 @@ public class GUI extends javax.swing.JFrame {
                     }
                     break;
                     
+                case "List of Movies":
+                    
+                    MovieDao movieDAO = new MovieDao();
+                    List<Movie> movieList = movieDAO.getAllMovies();
+                    size = movieList.size();
+                    for(int i = 0; i < size; i++){
+                        Movie read = movieList.get(i);
+                        
+                        doc.insertString(doc.getLength(), "Movie ID: ", bold);
+                        doc.insertString(doc.getLength(), String.valueOf(read.getMovieId()), null);
+                        doc.insertString(doc.getLength(), " Movie Title: ", bold);
+                        doc.insertString(doc.getLength(), read.getTitle(), null);
+                        doc.insertString(doc.getLength(), " Price: ", bold);
+                        doc.insertString(doc.getLength(), String.valueOf(read.getMoviePrice()), null);
+                        doc.insertString(doc.getLength(), "\n", bold);
+
+                        
+                    }
+                    break;
             }
         }
         catch(SQLException sql){
@@ -513,6 +604,8 @@ public class GUI extends javax.swing.JFrame {
             CustomerDao add = new CustomerDao();
         
             add.addCustomer(toAdd);
+            
+            output.setText("Successful Query");
         }
         catch(Exception e){
             output.setText("Invalid Input. Please check all fields");
@@ -526,6 +619,8 @@ public class GUI extends javax.swing.JFrame {
             int toDelete = Integer.parseInt(custID.getText());
             CustomerDao delete = new CustomerDao();
             delete.deleteCustomer(toDelete);
+            
+            output.setText("Successful Query");
         }
         catch(NumberFormatException e){
             output.setText("Invalid Customer ID");
@@ -544,6 +639,8 @@ public class GUI extends javax.swing.JFrame {
             CustomerDao update = new CustomerDao();
         
             update.updateCustomer(toUpdate);
+            
+            output.setText("Successful Query");
         }
         catch(Exception e){
             output.setText("Invalid Input. Please check all fields");
@@ -561,10 +658,13 @@ public class GUI extends javax.swing.JFrame {
             EmployeeDao add = new EmployeeDao();
         
             add.addEmployee(toAdd);
+            
+            output.setText("Successful Query");
         }
         catch(Exception e){
             output.setText("Invalid Input. Please check all fields");
         }
+        
 
     }//GEN-LAST:event_addEmployeeAction
 
@@ -574,6 +674,8 @@ public class GUI extends javax.swing.JFrame {
             int toDelete = Integer.parseInt(empID.getText());
             EmployeeDao delete = new EmployeeDao();
             delete.deleteEmployee(toDelete);
+            
+            output.setText("Successful Query");
         }
         catch(NumberFormatException e){
             output.setText("Invalid Customer ID");
@@ -591,6 +693,7 @@ public class GUI extends javax.swing.JFrame {
         
             update.updateEmployeeRole(Integer.parseInt(uEmpID.getText()), Integer.parseInt(uEmpR.getText()));
             
+            output.setText("Successful Query");
         }
         catch(Exception e){
             output.setText("Invalid Input. Please check all fields");
@@ -600,22 +703,37 @@ public class GUI extends javax.swing.JFrame {
 
     private void addMovieAction(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addMovieAction
         
+        output.setText("");
+        
+        try{
+        
+            MovieDao add = new MovieDao();
+        
+            add.addMovie(movieT.getText(), BigDecimal.valueOf(Double.parseDouble(movieP.getText())));
+            
+            output.setText("Successful Query");
+        }
+        catch(Exception e){
+            output.setText("Invalid Input. Please check all fields");
+        }
         
         
     }//GEN-LAST:event_addMovieAction
 
     private void deleteMovieAction(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteMovieAction
         
-        /*
+        
         try{
             int toDelete = Integer.parseInt(movieID.getText());
             MovieDao delete = new MovieDao();
             delete.deleteMovie(toDelete);
+            
+            output.setText("Successful Query");
         }
         catch(NumberFormatException e){
             output.setText("Invalid Movie ID");
         }
-        */
+        
         
     }//GEN-LAST:event_deleteMovieAction
 
@@ -664,6 +782,8 @@ public class GUI extends javax.swing.JFrame {
             CustomerDao update = new CustomerDao();
         
             update.assignMembership(Integer.parseInt(uCustIDMem.getText()), Integer.parseInt(uCustMID.getText()));
+            
+            output.setText("Successful Query");
         }
         catch(Exception e){
             output.setText("Invalid Input. Please check all fields");
@@ -672,6 +792,60 @@ public class GUI extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_updateCustomerMembershipAction
+
+    private void updateMovieAction(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateMovieAction
+        
+        output.setText("");
+        
+        try{
+            
+            MovieDao update = new MovieDao();
+        
+            update.editMovie(Integer.parseInt(uMovieID.getText()), uMovieT.getText(), BigDecimal.valueOf(Double.parseDouble(uMovieP.getText())));
+            
+            output.setText("Successful Query");
+            
+        }
+        catch(Exception e){
+            output.setText("Invalid Input. Please check all fields");
+        }
+        
+        
+        
+    }//GEN-LAST:event_updateMovieAction
+
+    private void addMovieToInventoryAction(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addMovieToInventoryAction
+        
+        output.setText("");
+        
+        try{
+        
+            MovieInventoryDAO add = new MovieInventoryDAO();
+        
+            add.addMovieToInventory(Integer.parseInt(invMovieID.getText()));
+            
+            output.setText("Successful Query");
+        }
+        catch(Exception e){
+            output.setText("Invalid Input. Please check all fields");
+        }
+        
+    }//GEN-LAST:event_addMovieToInventoryAction
+
+    private void deleteMovieFromInventoryAction(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteMovieFromInventoryAction
+        
+        try{
+            int toDelete = Integer.parseInt(invID.getText());
+            MovieInventoryDAO delete = new MovieInventoryDAO();
+            delete.deleteMovieFromInventory(toDelete);
+            
+            output.setText("Successful Query");
+        }
+        catch(NumberFormatException e){
+            output.setText("Invalid Movie ID");
+        }
+
+    }//GEN-LAST:event_deleteMovieFromInventoryAction
 
     /**
      * @param args the command line arguments
@@ -713,6 +887,7 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JButton addCustomerButton;
     private javax.swing.JButton addEmployeeButton;
     private javax.swing.JButton addMovieButton;
+    private javax.swing.JButton addMovieToInventory;
     private javax.swing.JTextField custD;
     private javax.swing.JTextField custE;
     private javax.swing.JTextField custFN;
@@ -723,14 +898,24 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JButton deleteCustomer;
     private javax.swing.JButton deleteEmployeeButton;
     private javax.swing.JButton deleteMovieButton;
+    private javax.swing.JButton deleteMovieFromInventory;
     private javax.swing.JTextField empFN;
     private javax.swing.JTextField empID;
     private javax.swing.JTextField empLN;
     private javax.swing.JTextField empPN;
     private javax.swing.JTextField empR;
     private javax.swing.JButton executeQuery;
+    private javax.swing.JTextField invID;
+    private javax.swing.JTextField invMovieID;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -758,8 +943,12 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JTextField uCustPN;
     private javax.swing.JTextField uEmpID;
     private javax.swing.JTextField uEmpR;
+    private javax.swing.JTextField uMovieID;
+    private javax.swing.JTextField uMovieP;
+    private javax.swing.JTextField uMovieT;
     private javax.swing.JButton updateCustomerButton;
     private javax.swing.JButton updateCustomerMembershipButton;
     private javax.swing.JButton updateEmployeeButton;
+    private javax.swing.JButton updateMovieButton;
     // End of variables declaration//GEN-END:variables
 }
