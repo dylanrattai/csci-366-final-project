@@ -29,8 +29,7 @@ public class MovieInventoryDAO {
         if (rowsInserted > 0) {
             System.out.println("Movie added to inventory successfully.");
         } else {
-            System.out.println("Failed to add movie to inventory.");
-            return false;
+            throw new SQLException("Failed to add movie to inventory.");
         }
 
     } catch (SQLException e) {
@@ -61,8 +60,7 @@ public class MovieInventoryDAO {
             if (rowsUpdated > 0) {
                 System.out.println("Movie availability updated successfully.");
             } else {
-                System.out.println("No inventory record found with the given ID.");
-                return false;
+                throw new SQLException("No inventory record found with the given ID.");
             }
 
         } catch (SQLException e) {
@@ -91,8 +89,7 @@ public class MovieInventoryDAO {
             if (rowsDeleted > 0) {
                 System.out.println("Movie deleted from inventory successfully.");
             } else {
-                System.out.println("No inventory record found with the given ID.");
-                return false;
+                throw new SQLException("No inventory record found with the given ID.");
             }
 
         } catch (SQLException e) {

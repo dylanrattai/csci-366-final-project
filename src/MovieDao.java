@@ -40,8 +40,7 @@ public class MovieDao {
             if (rowsInserted > 0) {
                 System.out.println("Movie added successfully.");
             } else {
-                System.out.println("Failed to add the movie.");
-                return false;
+                throw new SQLException("Failed to add movie.");
             }
 
         } catch (SQLException e) {
@@ -74,8 +73,7 @@ public class MovieDao {
             if (rowsUpdated > 0) {
                 System.out.println("Movie updated successfully.");
             } else {
-                System.out.println("No movie found with the given ID.");
-                return false;
+                throw new SQLException("No movie found with the given ID.");
             }
 
         } catch (SQLException e) {
@@ -113,8 +111,7 @@ public class MovieDao {
             if (rowsDeleted > 0) {
                 System.out.println("Movie deleted successfully.");
             } else {
-                System.out.println("No movie found with the given ID.");
-                return false;
+                throw new SQLException("No movie found with the given ID.");
             }
 
         } catch (SQLException e) {
