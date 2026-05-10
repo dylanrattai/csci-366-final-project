@@ -1,12 +1,12 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author alq24
+ */
 public class EmployeeDao {
 
     public boolean addEmployee(Employee employee) {
@@ -42,7 +42,7 @@ public class EmployeeDao {
         String sql = """
             SELECT employee_id, first_name, last_name, phone, role_type
             FROM employee_role_view
-            ORDER BY last_name, first_name
+            ORDER BY employee_id
         """;
 
         try (Connection conn = DBManager.getConnection();

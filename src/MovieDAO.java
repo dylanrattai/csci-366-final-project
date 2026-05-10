@@ -1,7 +1,10 @@
 import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author Dylan Rattai
@@ -25,7 +28,7 @@ public class MovieDao {
      * @return true if the movie was added successfully, false otherwise.
      */
     public boolean addMovie(String movieTitle, BigDecimal moviePrice) {
-        String sqlStatement = "INSERT INTO movie (movie_title, movie_price) VALUES (?, ?)";
+        String sqlStatement = "INSERT INTO movie (movie_title, rent_price) VALUES (?, ?)";
 
         try (Connection conn = DBManager.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sqlStatement)) {
@@ -58,7 +61,7 @@ public class MovieDao {
      * @return true if the movie was updated successfully, false otherwise.
      */
     public boolean editMovie(int movieId, String movieTitle, BigDecimal moviePrice) {
-        String sqlStatement = "UPDATE movie SET movie_title = ?, movie_price = ? WHERE movie_id = ?";
+        String sqlStatement = "UPDATE movie SET movie_title = ?, rent_price = ? WHERE movie_id = ?";
 
         try (Connection conn = DBManager.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sqlStatement)) {
@@ -121,4 +124,37 @@ public class MovieDao {
 
         return true;
     }
+    
+    
+    public List<Movie> getAllMovies() {
+        List<Movie> rows = new ArrayList<>();
+
+        String sql = """
+            SELECT movie_id, movie_title, rent_price
+            FROM movie
+            ORDER BY movie_title desc
+        """;
+
+        try (Connection conn = DBManager.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql);
+             ResultSet rs = stmt.executeQuery()) {
+
+            while (rs.next()) {
+                Movie movie = new Movie(
+                    rs.getInt("movie_id"),
+                    rs.getString("movie_title"),
+                    BigDecimal.valueOf(rs.getDouble("rent_price"))
+                );
+
+                rows.add(movie);
+            }
+
+        } catch (SQLException e) {
+            System.out.println("Error getting movies: " + e.getMessage());
+        }
+
+        return rows;
+    }
+    
+    
 }

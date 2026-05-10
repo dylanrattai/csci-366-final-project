@@ -1,17 +1,13 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-package dao;
 
-import model.Customer;
+
 import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import model.CustomerMembershipView;
-import movieproject.DBManager;
 
+/**
+ * @author alq24
+ */
 public class CustomerDao {
 
     public boolean addCustomer(Customer customer) {
@@ -56,7 +52,7 @@ public class CustomerDao {
             SELECT customer_id, first_name, last_name, email, phone,
                    created_date, membership_type, discount_percent
             FROM customer_membership_view
-            ORDER BY last_name, first_name
+            ORDER BY customer_id
         """;
 
         try (Connection conn = DBManager.getConnection();

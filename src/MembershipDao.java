@@ -1,16 +1,12 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-package dao;
 
-import model.Membership;
 import java.math.BigDecimal;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-import movieproject.DBManager;
 
+/**
+ * @author alq24
+ */
 public class MembershipDao {
 
     public List<Membership> getAllMemberships() {
@@ -19,7 +15,7 @@ public class MembershipDao {
         String sql = """
             SELECT membership_id, membership_type, discount_percent
             FROM membership
-            ORDER BY membership_type
+            ORDER BY membership_id
         """;
 
         try (Connection conn = DBManager.getConnection();

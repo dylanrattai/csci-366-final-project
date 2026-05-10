@@ -1,5 +1,4 @@
 
-package movieproject;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
