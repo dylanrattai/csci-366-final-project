@@ -150,4 +150,23 @@ public class CustomerDao {
             return false;
         }
     }
+    
+    
+    public boolean customerExists(int customerId) {
+    String sql = "SELECT 1 FROM customer WHERE customer_id = ?";
+
+    try (Connection conn = DBManager.getConnection();
+         PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+        stmt.setInt(1, customerId);
+
+        try (ResultSet rs = stmt.executeQuery()) {
+            return rs.next();
+        }
+
+    } catch (SQLException e) {
+        System.out.println("Error checking customer: " + e.getMessage());
+        return false;
+    }
+}
 }

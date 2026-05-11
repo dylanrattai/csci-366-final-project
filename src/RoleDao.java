@@ -30,4 +30,22 @@ public class RoleDao {
         return roles;
     }
     
+     public boolean roleExists(int roleId) {
+    String sql = "SELECT 1 FROM role WHERE role_id = ?";
+
+    try (Connection conn = DBManager.getConnection();
+         PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+        stmt.setInt(1, roleId);
+
+        try (ResultSet rs = stmt.executeQuery()) {
+            return rs.next();
+        }
+
+    } catch (SQLException e) {
+        System.out.println("Error checking role: " + e.getMessage());
+        return false;
+    }
+}
+    
 }

@@ -137,4 +137,22 @@ public class EmployeeDao {
             return false;
         }
     }
+    
+    public boolean employeeExists(int employeeId) {
+    String sql = "SELECT 1 FROM employee WHERE employee_id = ?";
+
+    try (Connection conn = DBManager.getConnection();
+         PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+        stmt.setInt(1, employeeId);
+
+        try (ResultSet rs = stmt.executeQuery()) {
+            return rs.next();
+        }
+
+    } catch (SQLException e) {
+        System.out.println("Error checking employee: " + e.getMessage());
+        return false;
+    }
+}
 }

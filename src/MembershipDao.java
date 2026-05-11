@@ -95,4 +95,22 @@ public class MembershipDao {
             return false;
         }
     }
+    
+    public boolean membershipExists(int membership_id) {
+    String sql = "SELECT 1 FROM membership WHERE membership_id = ?";
+
+    try (Connection conn = DBManager.getConnection();
+         PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+        stmt.setInt(1, membership_id);
+
+        try (ResultSet rs = stmt.executeQuery()) {
+            return rs.next();
+        }
+
+    } catch (SQLException e) {
+        System.out.println("Error checking membership: " + e.getMessage());
+        return false;
+    }
+}
 }

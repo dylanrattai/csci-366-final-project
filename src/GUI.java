@@ -741,14 +741,24 @@ public class GUI extends javax.swing.JFrame {
         
         output.setText("");
         
-        try{
+         try{
             StyledDocument doc = output.getStyledDocument();        
             Style bold = doc.addStyle("bold", null);       
             StyleConstants.setBold(bold, true);
 
             EmployeeDao empDAO = new EmployeeDao();
+            RoleDao roleDAO = new RoleDao();
             List<EmployeeRoleView> empList = empDAO.getEmployeesByRole(Integer.parseInt(lRoleID.getText()));
             int size = empList.size();
+            
+            if(!roleDAO.roleExists(Integer.parseInt(lRoleID.getText()))) {
+                output.setText("Role ID does not exist");
+                return;
+            }
+            if(empList.isEmpty()){
+                output.setText("No Employees found for that role ID.");
+                return;
+            } else {
             for(int i = 0; i < size; i++){
                 EmployeeRoleView read = empList.get(i);
 
@@ -763,7 +773,7 @@ public class GUI extends javax.swing.JFrame {
                 doc.insertString(doc.getLength(), " Role Type: ", bold);
                 doc.insertString(doc.getLength(), String.valueOf(read.getRoleType()), null);
                 doc.insertString(doc.getLength(), "\n", bold);
-
+            }
             }
         }
         catch(BadLocationException ble){
@@ -777,13 +787,27 @@ public class GUI extends javax.swing.JFrame {
         
         output.setText("");
         
-        try{
+       try{
+        
+            Customer toUpdate = new Customer(Integer.parseInt(uCustIDMem.getText()), uCustFN.getText(), uCustLN.getText(), uCustE.getText(), uCustPN.getText(), Integer.parseInt(uCustMID.getText()), null);
         
             CustomerDao update = new CustomerDao();
+            MembershipDao membership = new MembershipDao();
         
-            update.assignMembership(Integer.parseInt(uCustIDMem.getText()), Integer.parseInt(uCustMID.getText()));
+            if(!update.customerExists(Integer.parseInt(uCustIDMem.getText()))){
+                output.setText("Customer ID does not exist.");
+                return;
+            }
+            if(!membership.membershipExists(Integer.parseInt(uCustMID.getText()))){
+                output.setText("Membership ID does not exist.");
+                return;
+            }
+            if(update.updateCustomer(toUpdate)){
+            output.setText("Customer updated successfully");
+            } else {
+                output.setText("Customer was not updated");
+            }
             
-            output.setText("Successful Query");
         }
         catch(Exception e){
             output.setText("Invalid Input. Please check all fields");
