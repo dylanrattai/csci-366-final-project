@@ -634,7 +634,7 @@ public class GUI extends javax.swing.JFrame {
         output.setText("");
         
         try{
-            Customer toUpdate = new Customer(Integer.parseInt(uCustIDMem.getText()), uCustFN.getText(), uCustLN.getText(), uCustE.getText(), uCustPN.getText(), Integer.parseInt(uCustMID.getText()), null);
+            Customer toUpdate = new Customer(Integer.parseInt(uCustID.getText()), uCustFN.getText(), uCustLN.getText(), uCustE.getText(), uCustPN.getText(), Integer.parseInt(uCustM.getText()), null);
         
             CustomerDao update = new CustomerDao();
         
