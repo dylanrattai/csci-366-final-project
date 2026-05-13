@@ -615,12 +615,17 @@ public class GUI extends javax.swing.JFrame {
 
     private void deleteCustomerAction(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteCustomerAction
         
-        try{
+       try{
             int toDelete = Integer.parseInt(custID.getText());
             CustomerDao delete = new CustomerDao();
-            delete.deleteCustomer(toDelete);
             
-            output.setText("Successful Query");
+            if(delete.deleteCustomer(toDelete)) {
+                output.setText("Customer successfully deleted.");
+            } else{
+                output.setText("Customer does not exist.");
+            }
+            
+            
         }
         catch(NumberFormatException e){
             output.setText("Invalid Customer ID");
@@ -634,18 +639,30 @@ public class GUI extends javax.swing.JFrame {
         output.setText("");
         
         try{
-
             Customer toUpdate = new Customer(Integer.parseInt(uCustID.getText()), uCustFN.getText(), uCustLN.getText(), uCustE.getText(), uCustPN.getText(), Integer.parseInt(uCustM.getText()), null);
         
             CustomerDao update = new CustomerDao();
+            MembershipDao membership = new MembershipDao();
         
-            update.updateCustomer(toUpdate);
-            
-            output.setText("Successful Query");
+            if(!update.customerExists(Integer.parseInt(uCustID.getText()))){
+                output.setText("Customer ID does not exist.");
+                return;
+            }
+            if(!membership.membershipExists(Integer.parseInt(uCustM.getText()))){
+                output.setText("Membership ID does not exist.");
+                return;
+            }
+            if(update.updateCustomer(toUpdate)){
+            output.setText("Customer updated successfully");
+            } else {
+                output.setText("Customer was not updated");
+            }
         }
         catch(Exception e){
             output.setText("Invalid Input. Please check all fields");
+            e.printStackTrace();
         }
+
         
     }//GEN-LAST:event_updateCustomerAction
 
@@ -674,14 +691,16 @@ public class GUI extends javax.swing.JFrame {
         try{
             int toDelete = Integer.parseInt(empID.getText());
             EmployeeDao delete = new EmployeeDao();
-            delete.deleteEmployee(toDelete);
             
-            output.setText("Successful Query");
+            if(delete.deleteEmployee(toDelete)){
+            output.setText("Employee sucessfully deleted");
+        } else {
+                output.setText("Invalid Employee ID");
+                }
         }
         catch(NumberFormatException e){
-            output.setText("Invalid Customer ID");
+            output.setText("Invalid Employee ID");
         }
-        
     }//GEN-LAST:event_deleteEmployeeAction
 
     private void updateEmployeeAction(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateEmployeeAction
@@ -689,16 +708,33 @@ public class GUI extends javax.swing.JFrame {
         output.setText("");
         
         try{
-            
+            int employeeId = Integer.parseInt(uEmpID.getText().trim());
+            int roleId = Integer.parseInt(uEmpR.getText().trim());
+           
             EmployeeDao update = new EmployeeDao();
+            RoleDao roleDao = new RoleDao();
         
-            update.updateEmployeeRole(Integer.parseInt(uEmpID.getText()), Integer.parseInt(uEmpR.getText()));
-            
-            output.setText("Successful Query");
+            if(!update.employeeExists(employeeId)) {
+                output.setText("Employee ID does not exist.");
+                return;
+            }
+            if(!roleDao.roleExists(roleId)){
+                output.setText("Role ID does not exist.");
+                return;
+            }
+            if(update.updateEmployeeRole(employeeId, roleId)){           
+            output.setText("Employee updated successfully");
+            } else {
+                output.setText("Employee role was not updated.");
+            }
+        }
+        catch(NumberFormatException e){
+            output.setText("Employee ID and Role ID must be numbers.");
         }
         catch(Exception e){
-            output.setText("Invalid Input. Please check all fields");
+            output.setText("Invalid Input. Please check all fields.");
         }
+
 
     }//GEN-LAST:event_updateEmployeeAction
 
